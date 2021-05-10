@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Databases>
+  <Database name="Cars">
+    <Car DriverId="0" Age="7" Manufacturer="Audi">A6</Car>
+    <Car DriverId="0" Age="16" Manufacturer="Volkswagen">Golf Zwei</Car>
+    <Car DriverId="1" Age="52" Manufacturer="Citroen">DS Shark</Car>
+    <Car DriverId="1" Age="101" Manufacturer="Renault">M26/27</Car>
+    <Car DriverId="1" Age="45" Manufacturer="Volkswagen">Beetle</Car>
+    <Car DriverId="1" Age="40" Manufacturer="Zastava">750 (Fica)</Car>
+    <Car DriverId="2" Age="2" Manufacturer="Fiat">500L</Car>
+    <Car DriverId="2" Age="14" Manufacturer="Fiat">Punto</Car>
+    <Car DriverId="3" Age="33" Manufacturer="Renault">4 (Quatrelle)</Car>
+    <Car DriverId="3" Age="45" Manufacturer="Fabrika Automobila Priboj">FAP masina</Car>
+  </Database>
+
+  <Database name="Drivers">
+    <Driver Id="0" YearsDriving="14">Alan Ford</Driver>
+    <Driver Id="1" YearsDriving="5">Petar Petrovic</Driver>
+    <Driver Id="2" YearsDriving="23">Bob Rock</Driver>
+    <Driver Id="3" YearsDriving="30">Rambo Amadeus</Driver>
+  </Database>
+</Databases>

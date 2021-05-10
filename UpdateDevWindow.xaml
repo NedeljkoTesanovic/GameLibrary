@@ -1,0 +1,17 @@
+﻿<Window x:Class="GameLibrary.UpdateDevWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameLibrary"
+        mc:Ignorable="d"
+        Title="UpdateDevWindow" Height="240" Width="480" Background="DarkSlateGray"  WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" WindowStartupLocation="CenterOwner" MouseDown="OnMouseDown">
+    <Grid>
+        <Label Foreground="GhostWhite" Content="Update developer" Margin="191,0,171,205"/>
+        <Label Foreground="GhostWhite" Content="Name:" Margin="27,111,408,89"/>
+        <TextBox Name="textbox_Name" Margin="90,109,27,96"/>
+        <Button x:Name="button_UpdateDeveloper" Content="Update" Background="Transparent" BorderBrush="GhostWhite" Foreground="GhostWhite" Click="Onbutton_UpdateDeveloperClicked" Margin="60,175,318,24"/>
+        <Button x:Name="button_Close" Content="Close" Background="Transparent" BorderBrush="GhostWhite" Foreground="GhostWhite" Click="Onbutton_CloseClicked" Margin="327,175,51,24"/>
+        <Button x:Name="button_Reset" Content="Reset" Background="Transparent" BorderBrush="GhostWhite" Foreground="GhostWhite" Click="Onbutton_ResetClicked" Margin="191,175,187,24"/>
+    </Grid>
+</Window>

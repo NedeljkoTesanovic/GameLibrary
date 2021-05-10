@@ -1,0 +1,95 @@
+﻿<Window x:Class="GameLibrary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameLibrary"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="461" Width="800" Background="Transparent" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Closing="WindowClosing" Icon="/Images/icon.ico">
+    <Grid Background="Transparent">
+        <TabControl Panel.ZIndex="1" Background="DarkSlateGray" Margin="10,24,0,0" MouseLeftButtonDown="OnMouseLeftButtonDown">
+            <TabItem Header="Games">
+                <Grid>
+                    <DataGrid Name="gameList" ItemsSource="{Binding SelectedGame}" IsReadOnly="True" Background="DimGray" HeadersVisibility="All" Margin="12,19,16,58" AutoGenerateColumns="False">
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="GhostWhite"/>
+                                <Setter Property="Foreground" Value="DarkSlateGray"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Padding" Value="5"/>
+                            </Style>
+                            <ImageBrush x:Key="button_image_launch" ImageSource="/Images/launch.png"></ImageBrush>
+                            <ImageBrush x:Key="button_image_details" ImageSource="/Images/details.png"></ImageBrush>
+                            <ImageBrush x:Key="button_image_delete" ImageSource="/Images/delete.png"></ImageBrush>
+                            <ImageBrush x:Key="button_image_modify" ImageSource="/Images/modify.png"></ImageBrush>
+                            <ImageBrush x:Key="button_image_web" ImageSource="/Images/web.png"></ImageBrush>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Game" Binding="{Binding Title}"/>
+                            <DataGridTextColumn Header="Last Played" Binding="{Binding LastPlayed}"/>
+                            <DataGridTextColumn Header="Genres" Binding="{Binding GenresString}"/>
+                            <DataGridTextColumn Header="Play Modes" Binding="{Binding Modes}"/>
+                            <DataGridTextColumn Header="Max Players" Binding="{Binding MaxPlayers}"/>
+                            <DataGridTextColumn Header="Release Date" Binding="{Binding ReleaseDate,  StringFormat={}{0:dd/MM/yyyy}}"/>
+                            <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
+                            <DataGridTemplateColumn Header="Options" Visibility="Visible">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Name="button_launch" ToolTip="Launch selected game" Click="OnLaunchButtonClicked" Background="{StaticResource button_image_launch}" Height="25" Width="45"></Button>
+                                            <Button Name="button_details" ToolTip="View details about the selected game" Click="OnDetailsButtonClicked" Background="{StaticResource button_image_details}" Height="25" Width="25"></Button>
+                                            <Button Name="button_web" ToolTip="Open game webpage in chrome" Click="OnWebButtonClicked" Background="{StaticResource button_image_web}" Height="25" Width="25"></Button>
+                                            <Button Name="button_modify" ToolTip="Modify seleted game" Click="OnModifyButtonClicked" Background="{StaticResource button_image_modify}" Height="25" Width="25"></Button>
+                                            <Button Name="button_delete" ToolTip="Delete selected game" Click="OnDeleteButtonClicked" Background="{StaticResource button_image_delete}" Height="25" Width="25"></Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="button_add" Click="OnAddButtonClicked"  Margin="724,360,16,10" Background="Transparent" BorderBrush="GhostWhite" Foreground="GhostWhite" FontSize="24" FontWeight="ExtraBold" Content="+" ToolTip="Add a new game to the list" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="5000" ToolTipService.BetweenShowDelay="2000"></Button>
+                    <RadioButton x:Name="radioButton_full" Checked="ChangeViewFull"  Content="Full" Foreground="GhostWhite" ToolTip="Show every game detail" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="5000" ToolTipService.BetweenShowDelay="2000" Margin="12,364,690,27"/>
+                    <RadioButton x:Name="radioButton_Compact" Checked="ChangeViewCompact" Content="Compact" Foreground="GhostWhite" ToolTip="Show only the title and last played date of the game" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="5000" ToolTipService.BetweenShowDelay="2000" Margin="12,387,690,2"/>
+                    <CheckBox x:Name="checkbox_MinimizeOnGameLaunch"  Foreground="GhostWhite" Content="Minimize window on game launch" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="116,372,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Developers" Margin="-2,-2,-2,0">
+                <Grid>
+                    <DataGrid x:Name="developersList" ItemsSource="{Binding SelectedDeveloper}" IsReadOnly="True" Background="DimGray" HeadersVisibility="All" Margin="12,19,16,58" AutoGenerateColumns="False">
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="GhostWhite"/>
+                                <Setter Property="Foreground" Value="DarkSlateGray"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Padding" Value="5"/>
+                            </Style>
+                            <ImageBrush x:Key="button_image_details" ImageSource="/Images/details.png"></ImageBrush>
+                            <ImageBrush x:Key="button_image_delete" ImageSource="/Images/delete.png"></ImageBrush>
+                            <ImageBrush x:Key="button_image_modify" ImageSource="/Images/modify.png"></ImageBrush>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTemplateColumn Header="Options" Visibility="Visible">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Name="button_details" ToolTip="List Games that the Developer has made" Click="OnDetailsDevButtonClicked" Background="{StaticResource button_image_details}" Height="25" Width="25"></Button>
+                                            <Button Name="button_modify" ToolTip="Modify selected Developer" Click="OnModifyDevButtonClicked" Background="{StaticResource button_image_modify}" Height="25" Width="25"></Button>
+                                            <Button Name="button_delete" ToolTip="Delete selected Developer" Click="OnDeleteDevButtonClicked" Background="{StaticResource button_image_delete}" Height="25" Width="25"></Button>
+                                        </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="button_addDeveloper" Click="OnAddDeveloperButtonClicked"  Margin="724,360,16,10" Background="Transparent" BorderBrush="GhostWhite" Foreground="GhostWhite" FontSize="24" FontWeight="ExtraBold" Content="+" ToolTip="Add a new Developer to the list" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="5000" ToolTipService.BetweenShowDelay="2000"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StackPanel Panel.ZIndex ="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button  Name="button_Minimize" Background="DarkSlateGray" Foreground="GhostWhite" FontWeight="ExtraBold" BorderBrush="DarkSlateGray" Content="-" FontSize="17" Click="OnMinimizeButtonClicked" Padding="1" Width="33"/>
+            <Button Name="button_Quit" Background="DarkSlateGray" Foreground="DarkRed" FontWeight="ExtraBold" BorderBrush="DarkSlateGray" Content="X" FontSize="17" Click="OnQuitButtonClicked" Padding="10" />
+        </StackPanel>
+    </Grid>
+</Window>
